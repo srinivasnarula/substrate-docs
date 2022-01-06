@@ -1,14 +1,17 @@
 ---
 title: Simple Crowdfund
 slug: /how-to-guides/v3/pallet-design/crowdfund
-keywords: pallet design, intermediate, runtime, child trie
-version: 3.0 
+keywords:
+  - pallet design
+  - intermediate
+  - runtime
+  - child trie
+version: '3.0'
 section: how to guides
 category: pallet design
-difficulty: 2
 ---
 
-This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage. This structure is useful for building crowdfunding apps. 
+This guide shows you how to build a pallet that controls multiple token accounts and stores data in child storage. This structure is useful for building crowdfunding apps.
 
 Using a child digital tree, or trie, provides two advantages over using standard storage. First, it allows you to remove the entire trie in a single storage write when the fund is dispensed or dissolved. Second, it allows any contributor to prove that they contributed using a Merkle Proof.
 
@@ -19,7 +22,7 @@ retirement period when contributors can reclaim their pledged funds. An unsucces
 ## Before you begin
 
 To follow this guide and implement the crowdfunding capabilities in your own pallet, include the following dependencies in your pallet:
-            
+
 ```rust
 use frame_support::{pallet_prelude::*, ensure, storage::child,
 traits::{Currency, ExistenceRequirement, Get, ReservableCurrency, WithdrawReasons},
@@ -28,13 +31,13 @@ ModuleId}
 };
 use frame_system::{pallet_prelude::*, ensure_signed};
 use super::*;
-```        
+```
 
 <Message
   type={`gray`}
   title={`Note`}
-  text={`This guide assumes that you know how to 
-  create your own Errors and Events according to the 
+  text={`This guide assumes that you know how to
+  create your own Errors and Events according to the
   pallet logic your creating.`}
 />
 
